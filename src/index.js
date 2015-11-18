@@ -1,4 +1,8 @@
-var THREE = require('three');
+"use strict";
+var WebGL = require( "./webgl/Webgl" );
 
-var OrbitControls = require('./controls/OrbitControls');
-console.log('hello world');
+global.window.onload = function() {
+
+	// run engine
+	var webGL = new WebGL();
+};

@@ -1,10 +1,10 @@
 {
-  "name": "webvr-unicorn",
+  "name": "webvr-template",
   "version": "0.1.0",
   "description": "A WebVR template with package & task manager",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arturitu/webvr-unicorn.git"
+    "url": "git+https://github.com/arturitu/webvr-template.git"
   },
   "main": "index.js",
   "dependencies": {
