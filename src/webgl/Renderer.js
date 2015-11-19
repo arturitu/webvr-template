@@ -19,7 +19,7 @@ function Renderer() {
 	//renderer.sortObjects=false;
 	//renderer.autoClear=false;
 	//renderer.alpha=false;
-	renderer.setClearColor( 0xbbbbbb, 1 );
+	renderer.setClearColor( 0x111116, 1 );
 
 	document.querySelector( '#webglContent' ).appendChild( renderer.domElement );
 

@@ -12,10 +12,6 @@ body {
     height: 100%;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 a {
   color: #444444;
 }

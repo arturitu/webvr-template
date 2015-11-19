@@ -8,7 +8,7 @@ polyfill = require('./webvr-polyfill/main'),
 manager = require('./webvr-manager/main'),
 VREffect = require('./effects/VREffect'),
 clock = new THREE.Clock(),
-controls, effect, camera, scene, cube;
+controls, effect, camera, scene, light, cube;
 
 
 function Webgl() {
@@ -28,13 +28,20 @@ Webgl.prototype.init = function() {
 	// Create a VR manager helper to enter and exit VR mode.
 	manager = new WebVRManager(renderer, effect, {hideButton: false});
 
-	var geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	var material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
+	light = new THREE.HemisphereLight( 0x000000, 0xffffff,1 );
+
+	var geometry = new THREE.IcosahedronGeometry( 10 );
+	var material = new THREE.MeshPhongMaterial({
+					color: 0x156289,
+					emissive: 0x072534,
+					shading: THREE.FlatShading
+				});
 
 	cube = new THREE.Mesh( geometry, material );
-	cube.position.set(0,0,-50);
+	cube.position.set(0,0,-20);
 
 	scene = new THREE.Scene();
+	scene.add( light );
 	scene.add( cube );
 
 	window.addEventListener( 'resize', this.onWindowResize, false );
@@ -64,6 +71,7 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 
+	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
 
 	controls.update();
