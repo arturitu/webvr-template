@@ -3,10 +3,12 @@
 var THREE = require('three');
 
 var renderer = require('./Renderer'),
+VRControls = require('./controls/VRControls'),
+polyfill = require('./webvr-polyfill/main'),
+manager = require('./webvr-manager/main'),
+VREffect = require('./effects/VREffect'),
 clock = new THREE.Clock(),
-camera,
-scene,
-cube;
+controls, effect, camera, scene, cube;
 
 
 function Webgl() {
@@ -15,7 +17,16 @@ function Webgl() {
 
 Webgl.prototype.init = function() {
 	
-	camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 1, 10000 );
+	
+	camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 10000 );
+
+	controls = new THREE.VRControls( camera );
+
+	effect = new THREE.VREffect(renderer);
+	effect.setSize(window.innerWidth, window.innerHeight);
+
+	// Create a VR manager helper to enter and exit VR mode.
+	manager = new WebVRManager(renderer, effect, {hideButton: false});
 
 	var geometry = new THREE.BoxGeometry( 10, 10, 10 );
 	var material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
@@ -53,13 +64,10 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 
-	//controls.update ( delta );
+	cube.rotation.y += 0.01;
 
-	cube.rotation.y += delta;
-
-	camera.position.y += delta;
-
-	renderer.render ( scene, camera );
+	controls.update();
+	manager.render(scene, camera, delta);
 
 }
 
