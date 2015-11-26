@@ -8,7 +8,8 @@
   },
   "main": "index.js",
   "dependencies": {
-    "three": "0.73.0"
+    "three": "0.73.0",
+    "quick-loader": "^0.1.4"
   },
   "devDependencies": {
     "browserify": "^12.0.1",

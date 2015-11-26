@@ -15,6 +15,7 @@ body {
 a {
   color: #444444;
 }
+
 footer {
     position: absolute;
     text-align: right;
@@ -24,4 +25,19 @@ footer {
     padding-right: 20px;
 
     font-size: 14px;
+}
+
+#preload{
+    position: absolute;
+    width:300px;
+    height:150px;
+    left: 50%;
+    top: 50%;
+    font-size: 96px;
+    margin:-75px 0 0 -150px;
+    text-align: center;
+}
+
+.hidden{
+    display: none;
 }
